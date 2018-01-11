@@ -16,7 +16,7 @@ p {
 }
 
 #image {
-	
+	display: block;
 	border:	solid;
 	display: center;
 
