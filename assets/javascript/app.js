@@ -72,14 +72,17 @@ var correctCount = 0;
 var incorrectCount = 0;
 var gameOver = false;
 var score = (correctCount*10) + "%";
-var clock = 10;
+
 
 startGame();
 
 function startGame() {
-		generateQuestion();
+	var clock = 10;
+		$("#next").hide();
 		$("#start-over").hide();
 		$("#start").on("click", function() {
+			generateQuestion();
+			$("#next").show();
 			var startClock = setInterval(function() {
 			$("#clock").html(clock);
 			$("#start").hide();
@@ -134,7 +137,6 @@ $("#next").on("click", function() {
 		} else {
 			gameOver = true;
 			$("#next").hide();
-			$("#start-over").html(resetGame);
 		}
 		}
 	} else {
@@ -169,6 +171,10 @@ $("#next").on("click", function() {
 
 // 	}
 // }
+
+
+
+
 
 
 
