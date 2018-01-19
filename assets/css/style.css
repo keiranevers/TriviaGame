@@ -8,6 +8,12 @@ body {
 	color: white;
 }
 
+#message {
+	text-align: center;
+	color: red;
+	font-size: 20pt;
+}
+
 #clock {
 	text-align: center;
 	font-size: 36pt;
@@ -27,5 +33,7 @@ p {
 	height: 100%;
 	margin-bottom: 1px;
 }
+
+
 
 
