@@ -74,27 +74,34 @@ var gameOver = false;
 var score = (correctCount*10) + "%";
 var clock = 10;
 
+startGame();
+
+function startGame() {
+		generateQuestion();
+		$("#start-over").hide();
+		$("#start").on("click", function() {
+			var startClock = setInterval(function() {
+			$("#clock").html(clock);
+			$("#start").hide();
+			clock--
+			if (clock < 0) {
+				clearInterval(startClock);
+			}
+		}, 1000);
+	})
+}
 
 function generateQuestion() {
 	var question = questionArray[questionCounter].question;
 	$("#image").html(questionArray[questionCounter].image);
 	$('#question').html(questionArray[questionCounter].question);
 	var answers = questionArray[questionCounter].answerArray;
-	//for (var i = 0; i < answers.length; i++) {
-	  $("#answer").html(
-	  	"<label class='container'><input type='radio' name='radio'><span id='selected' class='checkmark'>"+ questionArray[questionCounter].answerArray[0] + "</span></label>" +
-	  	"<label class='container'><input type='radio' name='radio'><span id='selected' class='checkmark'>"+ questionArray[questionCounter].answerArray[1] + "</span></label>" +
-	  	"<label class='container'><input type='radio' name='radio'><span id='selected' class='checkmark'>"+ questionArray[questionCounter].answerArray[2] + "</span></label>" +
-	  	"<label class='container'><input type='radio' name='radio'><span id='selected' class='checkmark'>"+ questionArray[questionCounter].answerArray[3] + "</span></label>" +
-	  	"<label class='container'><input type='radio' name='radio'><span id='selected' class='checkmark'>"+ questionArray[questionCounter].answerArray[4] + "</span></label>");
-		//}
-	}
-
-function correctCount() {
-	$("#correctCount").html(correctCount);
-	correctCount++;
-	var answer = questionArray[questionCounter].correctAnswer;
-	questionCounter++;
+  	$("#answer").html(
+  	"<label class='container'><input type='radio' name='radio'><span id='selected' class='checkmark'>"+ questionArray[questionCounter].answerArray[0] + "</span></label>" +
+  	"<label class='container'><input type='radio' name='radio'><span id='selected' class='checkmark'>"+ questionArray[questionCounter].answerArray[1] + "</span></label>" +
+  	"<label class='container'><input type='radio' name='radio'><span id='selected' class='checkmark'>"+ questionArray[questionCounter].answerArray[2] + "</span></label>" +
+  	"<label class='container'><input type='radio' name='radio'><span id='selected' class='checkmark'>"+ questionArray[questionCounter].answerArray[3] + "</span></label>" +
+  	"<label class='container'><input type='radio' name='radio'><span id='selected' class='checkmark'>"+ questionArray[questionCounter].answerArray[4] + "</span></label>");
 }
 
 function incorrectCount() {
@@ -110,34 +117,13 @@ function timeOut() {
 	}
 }
 
-function startGame() {
-	generateQuestion();
-	$("#start-over").hide();
-$("#start").on("click", function() {
-		var startClock = setInterval(function() {
-		$("#clock").html(clock);
-		$("#start").hide();
-		clock--
-		if (clock < 0) {
-			clearInterval(startClock);
-		}
-	}, 1000);
-})
-}
-
-function resetGame() {
-
-}
-
-startGame();
-
 $("#next").on("click", function() {
 	if (!gameOver) {
-		selection = $("#answer").val();
-		if (selection == undefined) {
+		this.answer = $("#answer").val();
+		if (this.answer == undefined) {
 			$("#message").html("Please, select an answer.");
 		} else {
-			if (selection == questionArray[questionCounter].correctAnswer) {
+			if (this.answer == questionArray[questionCounter].correctAnswer) {
 				correctCount++;
 			} else { 
 				incorrectCount++;
@@ -148,7 +134,7 @@ $("#next").on("click", function() {
 		} else {
 			gameOver = true;
 			$("#next").hide();
-			$("#start-over").html(startGame);
+			$("#start-over").html(resetGame);
 		}
 		}
 	} else {
@@ -183,6 +169,8 @@ $("#next").on("click", function() {
 
 // 	}
 // }
+
+
 
 
 
