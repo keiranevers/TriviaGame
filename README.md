@@ -10,6 +10,6 @@ The score is recorded based on each correct count.  There are 10 questions, wort
 
 Once the user selects an answer, they shall click the next button to display the next question.  
 
-I've got the clock (set to 10 for testing) working and the 'next' to get the next question.
+I've got the clock (set to 10 for testing) working and the 'next' to get the next question.  I refactored all of it and now it's not taking the value of the first question.
 
-I'm struggling with capturing the value of the user's answer, and counting the correct and incorrect count.  
+
