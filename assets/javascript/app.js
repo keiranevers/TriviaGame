@@ -107,7 +107,7 @@ var game = {
   },
   // checking each input if it is a correct answer or wrong answer and incrementing my game.correct and game.incorrect
   done: function(){
-    $.each($('input[name=radio]:checked').val(), function(){
+    $.each($('input[name="question-0"]:checked'), function(){
       if($(this).val() == questionArray[0].correctAnswer){
         $("#correctCount").html(game.correct++);
       }
